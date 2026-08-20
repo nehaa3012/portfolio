@@ -2,6 +2,40 @@ import type { Experience } from "../types/experiences";
 
 export const EXPERIENCES: Experience[] = [
   {
+    id: "ima360",
+    companyName: "IMA360",
+    companyLogo: "https://ima360.com/images/logo-gradient.webp",
+    positions: [
+      {
+        id: "ima360-2026",
+        title: "Software Engineer",
+        employmentPeriod: {
+          start: "Feb 2026",
+          end: "Present",
+        },
+        employmentType: "Full-time",
+        icon: "code",
+        description: `- Re-engineered the Go-based Incentive Management Service, reducing database contention through query/index optimization, caching, and concurrency tuning. Built a bulk Excel ingestion pipeline with streaming, parallel processing, and idempotency, cutting processing time by 4× while reducing memory and GC overhead.
+- Rebuilt the Kafka-based job processing pipeline for reliability at scale, introducing at-least-once delivery, idempotent execution, priority scheduling, optimized partitioning, and worker pools to prevent job loss and improve throughput. Established end-to-end observability through structured job metadata, logging, and metrics.
+- Engineered a high-throughput Go worker for generating and packaging thousands of invoice PDFs, using database streaming and channel-based concurrency to sustain large workloads. Reduced allocation and memory overhead through reusable byte buffers and optimized PDF generation before delivering ZIP archives to AWS S3.
+- Drove performance and maintainability improvements across Go services, introducing reusable database-batching abstractions, strategic caching, SQL optimization, SOLID-based refactoring, and expanded test coverage—reducing redundant database work and establishing scalable patterns reused across backend workflows.
+`,
+        skills: [
+          "Golang",
+          "Gin",
+          "Postgres",
+          "Kafka",
+          "Redis",
+          "SOLID",
+          "Docker",
+          "AWS",
+        ],
+        isExpanded: true,
+      },
+    ],
+    isCurrentEmployer: true,
+  },
+  {
     id: "techywebsolutio",
     companyName: "Webability",
     companyLogo: "https://www.webability.io/logo.png",
