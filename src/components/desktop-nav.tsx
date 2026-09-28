@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import type { NavItem } from "@/types/nav";
 import { Button } from "@/components/ui/button";
 import { GithubIcon } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function DesktopNav({ items }: { items: NavItem[] }) {
   const pathname = usePathname();
@@ -86,6 +87,8 @@ export function DesktopNav({ items }: { items: NavItem[] }) {
         >
           <GithubIcon className="size-4" />
         </a>
+
+        <ThemeToggle />
       </div>
     </div>
   );

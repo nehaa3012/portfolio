@@ -19,8 +19,8 @@ export default function Page() {
         }}
       />
 
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-        <div className="flex flex-col md:flex-row gap-8 lg:gap-12 items-start">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-6 pb-16">
+        <div className="flex flex-col md:flex-row gap-8 lg:gap-12">
           {/* Left Side: GitHub Profile Sidebar */}
           <ProfileSidebar />
 

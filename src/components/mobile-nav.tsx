@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useTheme } from "next-themes";
+import { MoonIcon, SunIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -19,6 +21,9 @@ export function MobileNav({
   items: NavItem[];
   className?: string;
 }) {
+  const { resolvedTheme, setTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -64,6 +69,14 @@ export function MobileNav({
           >
             Download Resume
           </a>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem
+          onClick={() => setTheme(isDark ? "light" : "dark")}
+          className="w-full cursor-pointer py-1.5 flex items-center justify-between"
+        >
+          <span>{isDark ? "Light Mode" : "Dark Mode"}</span>
+          {isDark ? <SunIcon className="size-4 text-amber-400" /> : <MoonIcon className="size-4" />}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

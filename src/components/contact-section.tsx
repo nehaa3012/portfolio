@@ -1,19 +1,30 @@
 "use client";
 
 import { useState } from "react";
-import { CheckIcon, CopyIcon, GithubIcon, MailIcon } from "lucide-react";
+import { CheckIcon, CopyIcon, GithubIcon, MailIcon, PhoneIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Panel, PanelContent, PanelHeader, PanelTitle } from "./panel";
 
 export function ContactSection() {
-  const [copied, setCopied] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
 
   const handleCopyEmail = async () => {
     try {
       await navigator.clipboard.writeText("nehach782@gmail.com");
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2000);
+    } catch {
+      // Fallback
+    }
+  };
+
+  const handleCopyPhone = async () => {
+    try {
+      await navigator.clipboard.writeText("+91 74173 51715");
+      setCopiedPhone(true);
+      setTimeout(() => setCopiedPhone(false), 2000);
     } catch {
       // Fallback
     }
@@ -27,9 +38,10 @@ export function ContactSection() {
 
       <PanelContent className="space-y-6">
         <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-          Have a project in mind, an interesting technical challenge, or an opportunity to collaborate? Feel free to reach out.
+          Have a project in mind, an interesting technical challenge, or an opportunity to collaborate? Feel free to reach out via phone, email, or GitHub.
         </p>
 
+        {/* Action Buttons */}
         <div className="flex flex-wrap items-center gap-3">
           <Button asChild size="sm">
             <a href="mailto:nehach782@gmail.com" className="gap-2">
@@ -38,22 +50,29 @@ export function ContactSection() {
             </a>
           </Button>
 
+          <Button asChild variant="outline" size="sm">
+            <a href="tel:+917417351715" className="gap-2">
+              <PhoneIcon className="size-4" />
+              <span>+91 74173 51715</span>
+            </a>
+          </Button>
+
           <Button
             type="button"
             variant="outline"
             size="sm"
-            onClick={handleCopyEmail}
+            onClick={handleCopyPhone}
             className="gap-2 text-xs font-mono cursor-pointer"
           >
-            {copied ? (
+            {copiedPhone ? (
               <>
                 <CheckIcon className="size-3.5 text-emerald-600" />
-                <span>Copied nehach782@gmail.com</span>
+                <span>Copied Number</span>
               </>
             ) : (
               <>
                 <CopyIcon className="size-3.5" />
-                <span>Copy email address</span>
+                <span>Copy Phone</span>
               </>
             )}
           </Button>
@@ -71,14 +90,31 @@ export function ContactSection() {
           </Button>
         </div>
 
-        <div className="pt-2 text-xs font-mono text-muted-foreground">
-          Direct email:{" "}
-          <a
-            href="mailto:nehach782@gmail.com"
-            className="text-foreground hover:underline underline-offset-4"
-          >
-            nehach782@gmail.com
-          </a>
+        {/* Direct Contact Links */}
+        <div className="pt-2 border-t border-border/60 flex flex-wrap gap-x-6 gap-y-2 text-xs font-mono text-muted-foreground">
+          <div>
+            Phone:{" "}
+            <a
+              href="tel:+917417351715"
+              className="text-foreground hover:underline underline-offset-4 font-medium"
+            >
+              +91 74173 51715
+            </a>
+          </div>
+
+          <div>
+            Email:{" "}
+            <a
+              href="mailto:nehach782@gmail.com"
+              className="text-foreground hover:underline underline-offset-4 font-medium"
+            >
+              nehach782@gmail.com
+            </a>
+          </div>
+
+          <div>
+            Location: <span className="text-foreground">India</span>
+          </div>
         </div>
       </PanelContent>
     </Panel>

@@ -34,7 +34,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "atfenix",
-    title: "ATFenix",
+    title: "Atfenix",
     period: {
       start: "2026",
       end: "Present",

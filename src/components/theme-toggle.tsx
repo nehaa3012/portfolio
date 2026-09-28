@@ -3,51 +3,46 @@
 import { useTheme } from "next-themes";
 import { useCallback, useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
+import { MoonIcon, SunIcon } from "lucide-react";
 
 import { META_THEME_COLORS } from "@/config/site";
 import { useMetaColor } from "@/hooks/use-meta-color";
-
-import { MoonIcon } from "./animated-icons/moon";
-import { SunMediumIcon } from "./animated-icons/sun-medium";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Kbd } from "@/components/ui/kbd";
 import { cn } from "@/lib/utils";
 
-export function ThemeToggle() {
+export function ThemeToggle({ className }: { className?: string }) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   const { setMetaColor } = useMetaColor();
 
-  // Avoid hydration mismatch
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const switchTheme = useCallback(() => {
-    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+    const nextTheme = resolvedTheme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
     setMetaColor(
-      resolvedTheme === "dark"
-        ? META_THEME_COLORS.light
-        : META_THEME_COLORS.dark
+      nextTheme === "dark" ? META_THEME_COLORS.dark : META_THEME_COLORS.light
     );
   }, [resolvedTheme, setTheme, setMetaColor]);
 
   useHotkeys("d", switchTheme);
 
-  // Don't render anything until mounted to avoid hydration mismatch
   if (!mounted) {
     return (
       <button
         className={cn(
-          "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium",
-          "h-9 w-9 shrink-0",
-          "hover:bg-accent hover:text-accent-foreground",
-          "disabled:pointer-events-none disabled:opacity-50"
+          "inline-flex items-center justify-center rounded-md border border-border/60 text-muted-foreground",
+          "size-8 shrink-0 opacity-50",
+          className
         )}
         disabled
+        aria-label="Theme Toggle"
       >
-        <span className="sr-only">Theme Toggle</span>
+        <span className="sr-only">Toggle theme</span>
       </button>
     );
   }
@@ -57,27 +52,28 @@ export function ThemeToggle() {
   return (
     <Tooltip>
       <TooltipTrigger
+        type="button"
         className={cn(
-          "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium",
-          "h-9 w-9 shrink-0 cursor-pointer",
+          "inline-flex items-center justify-center rounded-md border border-border/70 text-foreground",
+          "size-8 shrink-0 cursor-pointer transition-colors",
           "hover:bg-accent hover:text-accent-foreground",
           "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
-          "disabled:pointer-events-none disabled:opacity-50"
+          className
         )}
         onClick={switchTheme}
         aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
       >
         {isDark ? (
-          <MoonIcon className="size-5" />
+          <SunIcon className="size-4 text-foreground transition-transform duration-200 rotate-0 hover:rotate-45" />
         ) : (
-          <SunMediumIcon className="size-5" />
+          <MoonIcon className="size-4 text-foreground transition-transform duration-200 rotate-0 hover:-rotate-12" />
         )}
-        <span className="sr-only">Theme Toggle</span>
+        <span className="sr-only">Toggle theme</span>
       </TooltipTrigger>
 
       <TooltipContent className="pr-2 pl-3">
-        <div className="flex items-center gap-3">
-          Toggle Mode
+        <div className="flex items-center gap-2 text-xs">
+          <span>{isDark ? "Light mode" : "Dark mode"}</span>
           <Kbd>D</Kbd>
         </div>
       </TooltipContent>

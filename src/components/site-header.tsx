@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 import { SiteHeaderMark } from "./site-header-mark";
 import { SiteHeaderWrapper } from "./site-header-wrapper";
 
+import { ThemeToggle } from "@/components/theme-toggle";
+
 const MobileNav = dynamic(() =>
   import("@/components/mobile-nav").then((mod) => mod.MobileNav)
 );
@@ -26,8 +28,9 @@ export function SiteHeader() {
 
         <DesktopNav items={MAIN_NAV} />
 
-        <div className="flex items-center">
-          <MobileNav className="sm:hidden" items={MAIN_NAV} />
+        <div className="flex items-center gap-2 sm:hidden">
+          <ThemeToggle />
+          <MobileNav items={MAIN_NAV} />
         </div>
       </div>
     </header>
