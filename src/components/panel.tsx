@@ -8,7 +8,7 @@ function Panel({ className, ...props }: React.ComponentProps<"section">) {
     <section
       data-slot="panel"
       className={cn(
-        "screen-line-before screen-line-after border-x border-edge",
+        "py-12 border-b border-border/60",
         className
       )}
       {...props}
@@ -20,7 +20,7 @@ function PanelHeader({ className, ...props }: React.ComponentProps<"header">) {
   return (
     <header
       data-slot="panel-header"
-      className={cn("screen-line-after px-4", className)}
+      className={cn("mb-6", className)}
       {...props}
     />
   );
@@ -36,7 +36,7 @@ function PanelTitle({
   return (
     <Comp
       data-slot="panel-title"
-      className={cn("text-3xl font-semibold", className)}
+      className={cn("text-xl sm:text-2xl font-bold tracking-tight text-foreground", className)}
       {...props}
     />
   );
@@ -56,7 +56,7 @@ function PanelTitleSup({ className, ...props }: React.ComponentProps<"sup">) {
 
 function PanelContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <div data-slot="panel-body" className={cn("p-4", className)} {...props} />
+    <div data-slot="panel-body" className={cn("", className)} {...props} />
   );
 }
 

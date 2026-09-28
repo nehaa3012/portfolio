@@ -1,32 +1,38 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 interface ContactFormData {
     fullName: string;
     email: string;
     message: string;
-    turnstileToken: string;
+    turnstileToken?: string;
 }
 
 async function verifyTurnstile(token: string): Promise<boolean> {
-    const response = await fetch(
-        "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                secret: process.env.TURNSTILE_SECRET_KEY,
-                response: token,
-            }),
-        }
-    );
-
-    const data = await response.json();
-    return data.success;
+    const secret = process.env.TURNSTILE_SECRET_KEY;
+    if (!secret) {
+        // If Turnstile secret is not set, allow in development or fallback
+        return true;
+    }
+    try {
+        const response = await fetch(
+            "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    secret,
+                    response: token,
+                }),
+            }
+        );
+        const data = await response.json();
+        return data.success;
+    } catch {
+        return false;
+    }
 }
 
 export async function POST(request: NextRequest) {
@@ -41,43 +47,43 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        if (!turnstileToken) {
+        if (process.env.TURNSTILE_SECRET_KEY && turnstileToken) {
+            const isValidToken = await verifyTurnstile(turnstileToken);
+            if (!isValidToken) {
+                return NextResponse.json(
+                    { error: "Verification failed. Please try again." },
+                    { status: 400 }
+                );
+            }
+        }
+
+        const apiKey = process.env.RESEND_API_KEY;
+        if (!apiKey) {
             return NextResponse.json(
-                { error: "Please complete the verification" },
-                { status: 400 }
+                {
+                    error: "Email service is currently unconfigured. Please email directly at nehach782@gmail.com",
+                    mailtoFallback: `mailto:nehach782@gmail.com?subject=${encodeURIComponent(`Portfolio Message from ${fullName}`)}&body=${encodeURIComponent(message || "")}`
+                },
+                { status: 503 }
             );
         }
 
-        const isValidToken = await verifyTurnstile(turnstileToken);
-        if (!isValidToken) {
-            return NextResponse.json(
-                { error: "Verification failed. Please try again." },
-                { status: 400 }
-            );
-        }
-
+        const resend = new Resend(apiKey);
         const { data, error } = await resend.emails.send({
-            from: "UserAccess Contact <contact@useraccess.live>",
-            to: ["kumar.ashish72809@gmail.com"],
+            from: "Portfolio Contact <contact@resend.dev>",
+            to: ["nehach782@gmail.com"],
             replyTo: email,
-            subject: `New Contact Form Submission from ${fullName}`,
+            subject: `New Portfolio Message from ${fullName}`,
             html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #0066FF;">New Contact Form Submission</h2>
-          <hr style="border: 1px solid #eee;" />
-          
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #151515;">
+          <h2 style="color: #B08D57;">New Portfolio Message</h2>
+          <hr style="border: 1px solid #D8D2C8;" />
           <p><strong>Name:</strong> ${fullName}</p>
           <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-          
-          <h3 style="color: #333;">Message:</h3>
-          <div style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #0066FF;">
+          <h3 style="color: #151515;">Message:</h3>
+          <div style="background-color: #F5F3EF; padding: 16px; border-radius: 8px; border-left: 4px solid #B08D57;">
             <p style="margin: 0; white-space: pre-wrap;">${message || "No message provided"}</p>
           </div>
-          
-          <hr style="border: 1px solid #eee; margin-top: 30px;" />
-          <p style="color: #666; font-size: 12px;">
-            This email was sent from the UserAccess contact form.
-          </p>
         </div>
       `,
         });
@@ -85,7 +91,7 @@ export async function POST(request: NextRequest) {
         if (error) {
             console.error("Resend error:", error);
             return NextResponse.json(
-                { error: "Failed to send email" },
+                { error: "Failed to send email. Please use direct email: nehach782@gmail.com" },
                 { status: 500 }
             );
         }
@@ -101,4 +107,4 @@ export async function POST(request: NextRequest) {
             { status: 500 }
         );
     }
-}
+}

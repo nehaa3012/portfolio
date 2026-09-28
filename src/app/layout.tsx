@@ -2,11 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "@/styles/globals.css";
 import { META_THEME_COLORS, SITE_INFO } from "@/config/site";
 import { USER } from "@/portfolio/data/user";
-import Script from "next/script";
 import type { WebSite, WithContext } from "schema-dts";
 import { fontMono, fontSans } from "@/lib/fonts";
 import { Providers } from "@/components/providers";
-
 
 function getWebSiteJsonLd(): WithContext<WebSite> {
   return {
@@ -25,7 +23,6 @@ export const viewport: Viewport = {
   themeColor: META_THEME_COLORS.light,
 };
 
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_INFO.url),
   alternates: {
@@ -39,11 +36,11 @@ export const metadata: Metadata = {
   keywords: SITE_INFO.keywords,
   authors: [
     {
-      name: "ashish",
+      name: USER.displayName,
       url: SITE_INFO.url,
     },
   ],
-  creator: "ashish",
+  creator: USER.displayName,
   openGraph: {
     siteName: SITE_INFO.name,
     url: "/",
@@ -63,20 +60,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    creator: "@its_aashish_dev", // Twitter username
+    title: `${USER.displayName} – ${USER.jobTitle}`,
+    description: SITE_INFO.description,
     images: [SITE_INFO.ogImage],
-  },
-  icons: {
-    icon: [
-      {
-        url: "https://stealth.blr1.digitaloceanspaces.com/assest/Frame%201.ico",
-        sizes: "any",
-      },
-      {
-        url: "https://stealth.blr1.digitaloceanspaces.com/assest/Frame%201.ico",
-        type: "image/svg+xml",
-      },
-    ],
   },
 };
 
@@ -91,6 +77,7 @@ export default function RootLayout({
       className={`${fontSans.variable} ${fontMono.variable}`}
       suppressHydrationWarning
     >
+
       <head>
         <script
           type="text/javascript"
@@ -104,16 +91,8 @@ export default function RootLayout({
             __html: JSON.stringify(getWebSiteJsonLd()).replace(/</g, "\\u003c"),
           }}
         />
-
       </head>
-      <body
-        suppressHydrationWarning
-      >
-        <Script
-          src="/api/script.js"
-          data-site-id="fbcb600656be"
-          strategy="afterInteractive"
-        />
+      <body suppressHydrationWarning>
         <Providers>
           {children}
         </Providers>
@@ -121,3 +100,4 @@ export default function RootLayout({
     </html>
   );
 }
+

@@ -11,6 +11,7 @@ import { ProseMono } from "@/components/ui/typography";
 import { ImageLightbox } from "@/components/image-lightbox";
 import { PROJECTS } from "@/portfolio/data/projects";
 import { cn } from "@/lib/utils";
+import { TechIcon } from "@/components/tech-icon";
 
 // Helper function to get first alphanumeric character, skipping emojis
 function getFirstAlphanumeric(str: string): string {
@@ -42,19 +43,6 @@ export function generateStaticParams() {
     }));
 }
 
-function Separator({ className }: { className?: string }) {
-    return (
-        <div
-            className={cn(
-                "relative flex h-8 w-full border-x border-edge",
-                "before:absolute before:-left-[100vw] before:-z-1 before:h-8 before:w-[200vw]",
-                "before:bg-[repeating-linear-gradient(315deg,var(--pattern-foreground)_0,var(--pattern-foreground)_1px,transparent_0,transparent_50%)] before:bg-size-[10px_10px] before:[--pattern-foreground:var(--color-edge)]/56",
-                className
-            )}
-        />
-    );
-}
-
 export default async function ProjectDetailPage({ params }: Props) {
     const { id } = await params;
     const project = PROJECTS.find((p) => p.id === id);
@@ -68,15 +56,13 @@ export default async function ProjectDetailPage({ params }: Props) {
     const isSinglePeriod = end === start;
 
     return (
-        <div className="mx-auto md:max-w-3xl *:[[id]]:scroll-mt-22">
-            <Separator />
-
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 py-8 space-y-8">
             {/* Header with back button and title */}
-            <div className="flex items-center gap-3 border-x border-b border-edge px-4 py-6">
+            <div className="flex items-center gap-3 border-b border-border/60 pb-6">
                 <Button asChild variant="ghost" size="icon" className="shrink-0">
                     <Link href="/projects">
                         <ArrowLeftIcon className="size-4" />
-                        <span className="sr-only">Back to Home</span>
+                        <span className="sr-only">Back to Projects</span>
                     </Link>
                 </Button>
                 <div className="flex items-center gap-3">
@@ -93,19 +79,19 @@ export default async function ProjectDetailPage({ params }: Props) {
                         />
                     ) : (
                         <div
-                            className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-muted-foreground/15 bg-muted text-muted-foreground ring-1 ring-edge ring-offset-1 ring-offset-background select-none"
+                            className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-border bg-muted text-muted-foreground select-none"
                             aria-hidden="true"
                         >
                             <BoxIcon className="size-5" />
                         </div>
                     )}
                     <div>
-                        <h1 className="text-2xl font-bold tracking-tight">{project.title}</h1>
-                        <div className="flex items-center gap-0.5 text-sm text-muted-foreground">
+                        <h1 className="text-2xl font-bold tracking-tight text-foreground">{project.title}</h1>
+                        <div className="flex items-center gap-1 text-sm text-muted-foreground font-mono">
                             <span>{start}</span>
                             {!isSinglePeriod && (
                                 <>
-                                    <span className="font-mono">—</span>
+                                    <span>—</span>
                                     {isOngoing ? (
                                         <>
                                             <InfinityIcon
@@ -124,12 +110,10 @@ export default async function ProjectDetailPage({ params }: Props) {
                 </div>
             </div>
 
-            <Separator />
-
-            {/* Hero Section: Image left, quick info right */}
-            <div className="grid grid-cols-1 border-x border-b border-edge md:grid-cols-2">
-                {/* Image */}
-                <div className="overflow-hidden border-b border-edge md:border-b-0 md:border-r">
+            {/* Project Overview Card */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 rounded-xl border border-border bg-card p-6">
+                {/* Media / Visual fallback */}
+                <div className="overflow-hidden rounded-lg">
                     {project.media ? (
                         project.media.type === "image" ? (
                             <ImageLightbox
@@ -142,7 +126,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                                     alt={project.media.alt || project.title}
                                     width={400}
                                     height={300}
-                                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                    className="h-full w-full object-cover rounded-lg"
                                     unoptimized
                                 />
                             </ImageLightbox>
@@ -150,26 +134,37 @@ export default async function ProjectDetailPage({ params }: Props) {
                             <video
                                 src={project.media.url}
                                 controls
-                                className="h-full w-full object-cover"
+                                className="h-full w-full object-cover rounded-lg"
                                 poster={project.media.alt}
                             >
                                 Your browser does not support the video tag.
                             </video>
                         )
                     ) : (
-                        <div className="flex h-48 w-full items-center justify-center bg-gradient-to-br from-muted to-muted-foreground/10 md:h-full">
-                            <span className="text-6xl font-bold text-muted-foreground/20">
-                                {getFirstAlphanumeric(project.title)}
-                            </span>
+                        <div className="flex h-48 md:h-full w-full flex-col justify-between p-6 bg-muted/40 rounded-lg border border-border/60">
+                            <div className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
+                                Project Overview
+                            </div>
+                            <div>
+                                <span className="text-2xl font-bold text-foreground block">
+                                    {project.title}
+                                </span>
+                                <span className="font-mono text-xs text-muted-foreground mt-1 block">
+                                    Engineered by Neha Chaudhary
+                                </span>
+                            </div>
+                            <div className="font-mono text-[11px] text-muted-foreground">
+                                Production Application
+                            </div>
                         </div>
                     )}
                 </div>
 
                 {/* Quick Info */}
-                <div className="flex flex-col justify-center gap-4 p-6">
-                    {project.link && (
+                <div className="flex flex-col justify-center gap-4">
+                    {project.link ? (
                         <a
-                            className="inline-flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
+                            className="inline-flex items-center gap-2 text-sm font-medium hover:underline transition-colors"
                             href={project.link}
                             target="_blank"
                             rel="noopener"
@@ -177,11 +172,16 @@ export default async function ProjectDetailPage({ params }: Props) {
                             <LinkIcon className="size-4" />
                             <span>Visit Project</span>
                         </a>
+                    ) : (
+                        <div className="inline-flex items-center gap-2 text-xs font-mono text-muted-foreground rounded-md border border-border bg-muted/40 px-3 py-1.5 w-fit">
+                            <span className="size-1.5 rounded-full bg-emerald-500" />
+                            <span>Live Demo: URL on request</span>
+                        </div>
                     )}
 
-                    {project.github && (
+                    {project.github ? (
                         <a
-                            className="inline-flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
+                            className="inline-flex items-center gap-2 text-sm font-medium hover:underline transition-colors"
                             href={project.github}
                             target="_blank"
                             rel="noopener"
@@ -189,17 +189,25 @@ export default async function ProjectDetailPage({ params }: Props) {
                             <GithubIcon className="size-4" />
                             <span>View on GitHub</span>
                         </a>
+                    ) : (
+                        <div className="inline-flex items-center gap-2 text-xs font-mono text-muted-foreground">
+                            <GithubIcon className="size-3.5 text-muted-foreground/60" />
+                            <span>Source Code: Available upon request</span>
+                        </div>
                     )}
 
                     {project.skills.length > 0 && (
-                        <div>
-                            <h4 className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                        <div className="pt-2">
+                            <h4 className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground font-mono">
                                 Technologies
                             </h4>
                             <ul className="flex flex-wrap gap-1.5">
                                 {project.skills.slice(0, 6).map((skill, index) => (
                                     <li key={index} className="flex">
-                                        <Tag>{skill}</Tag>
+                                        <Tag className="gap-1.5">
+                                            <TechIcon name={skill} className="size-3" />
+                                            <span>{skill}</span>
+                                        </Tag>
                                     </li>
                                 ))}
                                 {project.skills.length > 6 && (
@@ -213,40 +221,35 @@ export default async function ProjectDetailPage({ params }: Props) {
                 </div>
             </div>
 
-            <Separator />
-
             {/* Description */}
             {project.description && (
-                <>
-                    <div className="border-x border-b border-edge p-6">
-                        <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-muted-foreground">
-                            About This Project
-                        </h3>
-                        <ProseMono>
-                            <Markdown>{project.description}</Markdown>
-                        </ProseMono>
-                    </div>
-                    <Separator />
-                </>
+                <div className="border-t border-border/60 pt-6">
+                    <h3 className="mb-4 text-base font-semibold tracking-tight text-foreground">
+                        About This Project
+                    </h3>
+                    <ProseMono>
+                        <Markdown>{project.description}</Markdown>
+                    </ProseMono>
+                </div>
             )}
 
             {/* All Skills */}
             {project.skills.length > 6 && (
-                <>
-                    <div className="border-x border-b border-edge p-6">
-                        <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-muted-foreground">
-                            All Technologies & Skills
-                        </h3>
-                        <ul className="flex flex-wrap gap-1.5">
-                            {project.skills.map((skill, index) => (
-                                <li key={index} className="flex">
-                                    <Tag>{skill}</Tag>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <Separator />
-                </>
+                <div className="border-t border-border/60 pt-6">
+                    <h3 className="mb-3 text-base font-semibold tracking-tight text-foreground">
+                        All Technologies & Tools
+                    </h3>
+                    <ul className="flex flex-wrap gap-1.5">
+                        {project.skills.map((skill, index) => (
+                            <li key={index} className="flex">
+                                <Tag className="gap-1.5">
+                                    <TechIcon name={skill} className="size-3" />
+                                    <span>{skill}</span>
+                                </Tag>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             )}
         </div>
     );

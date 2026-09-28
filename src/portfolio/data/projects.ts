@@ -2,92 +2,112 @@ import type { Project } from "../types/projects";
 
 export const PROJECTS: Project[] = [
   {
-    id: "monit",
-    title: "Monit",
+    id: "fixcars",
+    title: "FixCars (Web & Mobile)",
     period: {
-      start: "Jan 2026",
+      start: "2026",
+      end: "Present",
     },
-    github: "https://github.com/ashishDevv/monit",
+    link: "https://fixcars.ai/",
+    github: "https://github.com/nehaa3012",
     skills: [
-      "Go",
-      "Redis",
+      "React.js",
+      "Next.js",
+      "React Native",
+      "Express.js",
       "PostgreSQL",
-      "JWT",
-      "Concurrency",
-    ],
-    description: `High Performance Uptime Monitoring Service.
-
-**Features:**
-
-- Architected a distributed uptime monitoring system in Go supporting 1M+ monitors, leveraging Redis sorted sets and Lua scripting for deterministic O(log N) scheduling across instances.
-- Built a bounded-concurrency execution engine (5K HTTP connections) using goroutines, worker pools and semaphores to maximize throughput without resource exhaustion.
-- Orchestrated a crash-resilient reliability framework with dual sorted sets and visibility timeouts, ensuring zero job loss during high-concurrency load and worker failures.
-- Optimized the hot path with Redis-backed operations, preventing ~16K+ QPS load on PostgreSQL at scale.`,
-    isPinned: true,
-    media: {
-      type: "image",
-      url: "/Images/monit.png",
-      alt: "Monit - Uptime monitor",
-    },
-  },
-  {
-    id: "outflow",
-    title: "Outflow",
-    period: {
-      start: "Dec 2025",
-    },
-    github: "https://github.com/ashishDevv/Outflow",
-    skills: [
-      "Go",
-      "RabbitMQ",
+      "Prisma",
       "Redis",
-      "PostgreSQL",
-      "Concurrency",
-    ],
-    description: `Highly Reliable Transactional Outbox Processor.
-
-**Features:**
-
-- Processed 10K+ events/min with horizontal scaling by building a concurrent transactional outbox processor in Go.
-- Achieved zero message loss during crash simulations by designing atomic batch state transitions and time-based worker takeover within PostgreSQL transactions.
-- Reduced database round-trips by ~80% by batching 500 events per cycle and performing bulk status updates.
-- Ensured at-least-once delivery guarantees by combining persistence with reliable publishing to RabbitMQ
-`,
-    isPinned: true,
-    media: {
-      type: "image",
-      url: "/Images/outflow.png",
-      alt: "Outflow - Reliable Transactional Outbox Processor",
-    },
-  },
-  {
-    id: "codeengine",
-    title: "Code Execution Engine",
-    period: {
-      start: "Jan 2025",
-    },
-    github: "https://github.com/ashishDevv/Code-Execution-Engine",
-    skills: [
-      "Node.js",
-      "Redis",
-      "Docker",
       "BullMQ",
-      "Message Queues"
+      "LangChain",
+      "OpenAI",
+      "Pinecone",
     ],
-    description: `Horizontally Scalable Code Execution Engine.
+    description: `A comprehensive automotive services and vehicle care platform with AI-powered diagnostics and booking capabilities across Web and Mobile.
 
-**Features:**
-
-- Developed a Remote Code Execution System that securely runs user code within isolated environment, ensuring safe execution with limited resources.
-- Implemented a microservices architecture using Node.js Severs and Redis based Message Queues, enabling scalabl execution of code in asynchronous, distributed environment.
-- Utilized Node.js Streams to handle logs from Docker and process them to separate out stdout and stderr.
-- Implemented BullMQ (Redis) for scalable task queuing system between Services to manage concurrency and allowing multiple code execution tasks to run in parallel without blocking the system.
-- Developed a robust Express.js API, enabling seamless interaction and smooth execution of user code while handling requests asynchronously.`,
+**Contributions & Engineering:**
+- Major contributor across Web and Mobile applications, delivering end-to-end features using React.js, Next.js, React Native, Express.js, and PostgreSQL.
+- Built reusable UI components, multi-step booking workflows, customer & service dashboards, and authentication modules.
+- Developed scalable REST APIs using Express.js, Prisma, and PostgreSQL with Redis caching and BullMQ background queue processing.
+- Integrated AI-powered automotive diagnostic capabilities using LangChain, OpenAI, and Pinecone vector store.`,
     isPinned: true,
-    media: {
-      type: "image",
-      url: "/Images/cee.png",
-      alt: "Code Execution Engine",
-    },
   },
-]
+  {
+    id: "atfenix",
+    title: "ATFenix",
+    period: {
+      start: "2026",
+      end: "Present",
+    },
+    link: "https://one.atfenix.com/",
+    github: "https://github.com/nehaa3012",
+    skills: [
+      "NestJS",
+      "Next.js",
+      "TypeScript",
+      "Authentication",
+      "Payment Integrations",
+      "Cloud Storage",
+      "REST APIs",
+    ],
+    description: `An enterprise-oriented application providing digital business operations, secure authentication, multi-tenant workflows, payment integrations, and cloud asset storage.
+
+**Contributions & Engineering:**
+- Developed complete frontend modules, backend services, and enterprise business features using NestJS and Next.js.
+- Implemented robust role-based authentication, payment gateway integrations, and cloud storage management.
+- Structured reliable, scalable modular backend architecture with typed contracts, database optimizations, and high reliability.`,
+    isPinned: true,
+  },
+  {
+    id: "bitmaster",
+    title: "BitMaster",
+    period: {
+      start: "2025",
+      end: "Present",
+    },
+    link: "https://www.nehaaa.site/",
+    github: "https://github.com/nehaa3012",
+    skills: [
+      "Next.js",
+      "React.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Clerk Auth",
+      "Monaco Editor",
+      "OpenAI",
+      "REST APIs",
+    ],
+    description: `An AI-powered platform for competitive programming and interview preparation, helping developers master technical coding interviews.
+
+**Contributions & Engineering:**
+- Built an interactive online coding platform with real-time in-browser code execution across 15+ programming languages with instant feedback.
+- Integrated AI-powered hints and intelligent algorithmic assistance using OpenAI to guide developers through complex problems.
+- Created problem repositories (500+ problems), difficulty filters, company tracks, progress tracking analytics, weekly contests, and global leaderboards.
+- Implemented secure authentication with Clerk, responsive modern UI with Tailwind CSS, and embedded Monaco editor.`,
+    isPinned: true,
+  },
+  {
+    id: "ebliss",
+    title: "eBliss",
+    period: {
+      start: "2026",
+      end: "Present",
+    },
+    link: "https://nexus.eblissinfosys.com/",
+    github: "https://github.com/nehaa3012",
+    skills: [
+      "REST APIs",
+      "Payment Gateways",
+      "Cloud Storage",
+      "Frontend Development",
+      "Backend Services",
+    ],
+    description: `A production web platform involving interactive frontend development, backend services, payment handling, and third-party cloud integrations.
+
+**Contributions & Engineering:**
+- Contributed to frontend feature development, UI components, and reliable backend service integration.
+- Integrated REST APIs, payment gateways, and cloud asset storage pipelines.
+- Improved overall application performance, responsiveness, stability, and production reliability.`,
+    isPinned: true,
+  },
+];

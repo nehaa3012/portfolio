@@ -13,20 +13,9 @@ const MobileNav = dynamic(() =>
 
 export function SiteHeader() {
   return (
-    <SiteHeaderWrapper
-      className={cn(
-        "sticky top-0 z-50 max-w-screen overflow-x-hidden bg-background px-2 pt-2",
-        "data-[affix=true]:shadow-[0_0_16px_0_black]/8",
-        "not-dark:data-[affix=true]:**:data-header-container:after:bg-border",
-        "transition-shadow duration-300"
-      )}
-    >
-      <div
-        className="screen-line-before screen-line-after mx-auto flex h-12 items-center justify-between gap-2 border-x border-edge px-2 after:z-1 after:transition-[background-color] sm:gap-4 md:max-w-3xl"
-        data-header-container
-      >
+    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur-sm">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
-          className="has-data-[visible=false]:pointer-events-none [&_svg]:h-8"
           href="/"
           aria-label="Home"
         >
@@ -41,6 +30,6 @@ export function SiteHeader() {
           <MobileNav className="sm:hidden" items={MAIN_NAV} />
         </div>
       </div>
-    </SiteHeaderWrapper>
+    </header>
   );
 }

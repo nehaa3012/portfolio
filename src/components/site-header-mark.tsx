@@ -1,53 +1,24 @@
 "use client";
 
-import { useMotionValueEvent, useScroll } from "motion/react";
-import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-
-import { AlkushMark } from "./Alkush-mark";
-
-const calcDistance = (el: HTMLElement) => {
-  const rect = el.getBoundingClientRect();
-  const scrollTop = document.documentElement.scrollTop;
-  const headerHeight = 56;
-  return scrollTop + rect.top + rect.height - headerHeight;
-};
-
-function AlkushMarkMotion() {
-  const { scrollY } = useScroll();
-  const [visible, setVisible] = useState(false);
-  const distanceRef = useRef(160);
-
-  useMotionValueEvent(scrollY, "change", (latestValue) => {
-    setVisible(latestValue >= distanceRef.current);
-  });
-
-  useEffect(() => {
-    const coverMark = document.getElementById("js-cover-mark");
-    if (!coverMark) return;
-
-    distanceRef.current = calcDistance(coverMark);
-
-    const resizeObserver = new ResizeObserver(() => {
-      distanceRef.current = calcDistance(coverMark);
-    });
-    resizeObserver.observe(coverMark);
-
-    return () => {
-      resizeObserver.disconnect();
-    };
-  }, []);
-
-  return (
-    <AlkushMark
-      data-visible={visible}
-      className="translate-y-2 opacity-0 transition-[opacity,translate] duration-300 data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100"
-    />
-  );
-}
+import Image from "next/image";
+import { USER } from "@/portfolio/data/user";
 
 export function SiteHeaderMark() {
-  const pathname = usePathname();
-  const isHome = ["/", "/index"].includes(pathname);
-  return isHome ? <AlkushMarkMotion /> : <AlkushMark />;
+  return (
+    <div className="flex items-center gap-2.5">
+      <div className="size-7 rounded-full overflow-hidden border border-border shrink-0">
+        <Image
+          src={USER.avatar}
+          alt={USER.displayName}
+          width={28}
+          height={28}
+          className="size-full object-cover"
+          unoptimized
+        />
+      </div>
+      <span className="text-sm font-semibold tracking-tight text-foreground">
+        Neha Chaudhary
+      </span>
+    </div>
+  );
 }

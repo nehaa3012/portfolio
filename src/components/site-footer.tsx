@@ -1,43 +1,48 @@
-import { RssIcon } from "lucide-react";
-import Link from "next/link";
+"use client";
 
-import { SITE_INFO, SOURCE_CODE_GITHUB_URL } from "@/config/site";
-
-import { Icons } from "./icons";
+import { ArrowUpIcon } from "lucide-react";
 
 export function SiteFooter() {
+  const currentYear = new Date().getFullYear();
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="max-w-screen overflow-x-hidden px-2">
-      <div className="screen-line-before mx-auto border-x border-edge pt-4 md:max-w-3xl">
-        <p className="mb-4 px-4 text-center font-mono text-sm text-balance text-muted-foreground">
-          Built by{" "}
-          <a
-            className="link"
-            href="https://x.com/its_aashish_dev"
-            target="_blank"
-            rel="noopener"
-          >
-            Aashish Kumar
-          </a>
-          . The source code is available on{" "}
-          <a
-            className="link"
-            href={SOURCE_CODE_GITHUB_URL}
-            target="_blank"
-            rel="noopener"
-          >
-            GitHub
-          </a>
-          .
-        </p>
-      </div>
-      <div className="pb-[env(safe-area-inset-bottom,0px)]">
-        <div className="flex h-2" />
+    <footer className="border-t border-border/60 py-10 mt-8 bg-background">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted-foreground">
+          <p>© {currentYear} Neha Chaudhary. All rights reserved.</p>
+
+          <div className="flex items-center gap-4">
+            <a
+              href="https://github.com/nehaa3012"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors"
+            >
+              GitHub
+            </a>
+
+            <a
+              href="mailto:nehach782@gmail.com"
+              className="hover:text-foreground transition-colors"
+            >
+              Email
+            </a>
+
+            <button
+              type="button"
+              onClick={scrollToTop}
+              className="inline-flex items-center gap-1 hover:text-foreground transition-colors cursor-pointer"
+            >
+              <span>Top</span>
+              <ArrowUpIcon className="size-3" />
+            </button>
+          </div>
+        </div>
       </div>
     </footer>
   );
-}
-
-function Separator() {
-  return <div className="flex h-11 w-px bg-edge" />;
 }

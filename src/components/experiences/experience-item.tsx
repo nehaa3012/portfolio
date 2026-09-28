@@ -6,9 +6,9 @@ import { Experience } from "@/portfolio/types/experiences";
 
 export function ExperienceItem({ experience }: { experience: Experience }) {
   return (
-    <div className="screen-line-after space-y-4 py-4">
+    <div className="space-y-4">
       <div className="flex items-center gap-3">
-        <div className="flex size-6 shrink-0 items-center justify-center select-none">
+        <div className="flex size-7 shrink-0 items-center justify-center select-none">
           {experience.companyLogo ? (
             <Image
               src={experience.companyLogo}
@@ -21,7 +21,9 @@ export function ExperienceItem({ experience }: { experience: Experience }) {
               aria-hidden
             />
           ) : (
-            <span className="flex size-2 rounded-full bg-zinc-300 dark:bg-zinc-600" />
+            <div className="flex size-7 items-center justify-center rounded-md border border-border bg-muted text-xs font-medium text-foreground">
+              {experience.companyName.charAt(0)}
+            </div>
           )}
         </div>
 

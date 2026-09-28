@@ -9,11 +9,11 @@ const ScrollToTop = dynamic(() =>
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
     return (
-        <>
+        <div className="min-h-screen flex flex-col bg-background text-foreground">
             <SiteHeader />
-            <main className="max-w-screen overflow-x-hidden px-2">{children}</main>
+            <main className="flex-1">{children}</main>
             <SiteFooter />
             <ScrollToTop />
-        </>
+        </div>
     );
 }

@@ -38,7 +38,7 @@ export function ExperiencePositionItem({
               className={cn(
                 "flex size-6 shrink-0 items-center justify-center rounded-lg",
                 "bg-muted text-muted-foreground",
-                "border border-muted-foreground/15 ring-1 ring-edge ring-offset-1 ring-offset-background"
+                "border border-muted-foreground/15 ring-1 ring-border ring-offset-1 ring-offset-background"
               )}
               aria-hidden
             >

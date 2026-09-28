@@ -1,26 +1,15 @@
 export const SOCIAL_LINKS = [
   {
-    icon: "https://stealth.blr1.digitaloceanspaces.com/assest/socials/x",
-    title: "X (formerly Twitter)",
-    description: "@its_aashish_dev",
-    href: "https://x.com/its_aashish_dev",
-  },
-  {
-    icon: "https://stealth.blr1.digitaloceanspaces.com/assest/socials/github",
+    icon: "github",
     title: "GitHub",
-    description: "ashishDevv",
-    href: "https://github.com/ashishDevv",
+    description: "nehaa3012",
+    href: "https://github.com/nehaa3012",
   },
   {
-    icon: "https://stealth.blr1.digitaloceanspaces.com/assest/socials/linkedin",
-    title: "LinkedIn",
-    description: "kumar-ashu",
-    href: "https://linkedin.com/in/kumar-ashu",
+    icon: "mail",
+    title: "Email",
+    description: "nehach782@gmail.com",
+    href: "mailto:nehach782@gmail.com",
   },
-  {
-    icon: "https://stealth.blr1.digitaloceanspaces.com/assest/socials/leetcode",
-    title: "LeetCode",
-    description: "@ashish_kum9",
-    href: "https://leetcode.com/u/ashish_kum9/",
-  }
 ];
+

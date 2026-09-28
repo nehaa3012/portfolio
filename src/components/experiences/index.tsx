@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Panel, PanelHeader, PanelTitle } from "../panel";
 import { ExperienceItem } from "./experience-item";
 import { EXPERIENCES } from "@/portfolio/data/experiences";
@@ -11,7 +10,7 @@ export function Experiences() {
         <PanelTitle>Experience</PanelTitle>
       </PanelHeader>
 
-      <div className="pr-2 pl-4">
+      <div className="space-y-6">
         {EXPERIENCES.map((experience) => (
           <ExperienceItem key={experience.id} experience={experience} />
         ))}

@@ -1,0 +1,110 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1852 >>
+stream
+BT
+/F1 10 Tf
+50 780 Td
+14 TL
+/F2 18 Tf
+(Neha Chaudhary) Tj
+/F1 10 Tf
+T*
+(Full Stack Developer) Tj
+T*
+(Email: nehach782@gmail.com | GitHub: github.com/nehaa3012) Tj
+T*
+() Tj
+T*
+T*
+/F2 12 Tf
+(SUMMARY) Tj
+/F1 10 Tf
+T*
+(Full Stack Developer with professional experience building scalable web and mobile applications using) Tj
+T*
+(React.js, Next.js, React Native, Node.js, Express.js and NestJS. Experienced in building production-ready) Tj
+T*
+(frontend interfaces, backend APIs, AI integrations, authentication systems, database design and cloud) Tj
+T*
+(deployments using Docker and Vercel.) Tj
+T*
+() Tj
+T*
+T*
+/F2 12 Tf
+(EXPERIENCE) Tj
+/F1 10 Tf
+T*
+(Builder Monkey | Full Stack Developer \(Mar 2026 - Present\)) Tj
+T*
+(- Developing scalable web and mobile applications using React.js, Next.js, React Native, Node.js, Express.js, NestJS.) Tj
+T*
+(- Building reusable frontend components, secure REST APIs, authentication systems and database-driven applications.) Tj
+T*
+(- Working with Docker, Redis, BullMQ, Git, GitHub and Vercel to deliver production-ready software.) Tj
+T*
+() Tj
+T*
+T*
+/F2 12 Tf
+(PROJECTS) Tj
+/F1 10 Tf
+T*
+(FixCars \(Web & Mobile\)) Tj
+T*
+(- Major contributor across Web and Mobile applications delivering end-to-end features.) Tj
+T*
+(- Tech: React.js, Next.js, React Native, Express.js, PostgreSQL, Prisma, Redis, BullMQ, LangChain, OpenAI, Pinecone.) Tj
+T*
+(ATFenix) Tj
+T*
+(- Enterprise-oriented application with business features, authentication, payment integrations, cloud storage.) Tj
+T*
+(eBliss) Tj
+T*
+(- Production application with frontend, backend services, payment gateways, and cloud storage.) Tj
+T*
+() Tj
+T*
+T*
+/F2 12 Tf
+(EDUCATION) Tj
+/F1 10 Tf
+T*
+(Raj Kumar Goel Institute of Technology \(RKGIT\) - B.Tech CSE \(2022-2026\) | CGPA: 7.5/10) Tj
+T*
+(Presidium School \(CBSE\): 77% | Mount Carmel School \(ICSE\): 80%) Tj
+T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002155 00000 n 
+0000002225 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2300
+%%EOF

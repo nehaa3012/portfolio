@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Neha Chaudhary — Personal Developer Portfolio
 
-## Getting Started
+A modern, minimal, editorial-inspired developer portfolio for **Neha Chaudhary**, Full Stack Developer at Builder Monkey. Built with Next.js 16 (App Router), React 19, Tailwind CSS v4, Motion, and TypeScript.
 
-First, run the development server:
+---
+
+## ✦ Overview
+
+- **Name:** Neha Chaudhary
+- **Role:** Full Stack Developer
+- **Company:** Builder Monkey (March 2026 – Present)
+- **Education:** B.Tech in Computer Science Engineering, RKGIT (2022–2026)
+- **GitHub:** [https://github.com/nehaa3012](https://github.com/nehaa3012)
+- **Email:** [nehach782@gmail.com](mailto:nehach782@gmail.com)
+
+---
+
+## ✦ Key Sections
+
+1. **Navigation:** Sticky navigation with NC monogram, smooth section scrolling, active scroll indication, and a one-click Resume download button.
+2. **Hero:** Expressive typography with Playfair Display and Inter, professional status indicator, View Work and Download Resume CTAs, and verified GitHub & email links.
+3. **About:** Verified narrative covering full-stack web, mobile, backend architecture, AI workflows, databases, and production deployments.
+4. **Professional Experience:** Structured timeline featuring Builder Monkey with verified responsibilities and tech stack.
+5. **Featured Projects:** High-impact showcase featuring FixCars (Web & Mobile), ATFenix, and eBliss with distinct layout proportions, contributions, and dedicated detail views (`/project/[id]`).
+6. **Technical Skills:** Categorized into Languages, Frontend, Backend, Database, DevOps & Tools, and Other Technologies with interactive category filters.
+7. **Education:** Compact, minimal academic summary for RKGIT (B.Tech CSE), Presidium School, and Mount Carmel School.
+8. **Contact:** "Let's Build Something Meaningful" closing statement with direct email, copy address helper, GitHub link, and interactive direct message composer.
+9. **Footer:** Clean branding, copyright, and smooth Back to Top action.
+
+---
+
+## ✦ Color Palette & Aesthetic
+
+- **Warm Off-White:** `#F5F3EF`
+- **Deep Charcoal:** `#151515`
+- **Warm Black:** `#0D0D0C`
+- **Stone:** `#D8D2C8`
+- **Taupe:** `#A79D8F`
+- **Champagne Bronze:** `#B08D57`
+
+---
+
+## ✦ Running Locally
 
 ```bash
+# 1. Install dependencies (if needed)
+npm install
+
+# 2. Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# 3. Open in browser
+http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To run a production build:
+```bash
+npm run build
+npm run start
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✦ Configuration & Assets
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Resume PDF:** Placed at `public/resume.pdf`. You can update or replace this PDF anytime with your latest resume file.
+- **Environment Variables (Optional):**
+  - `RESEND_API_KEY`: If you wish to send emails via Resend from the contact API route.
+  - `TURNSTILE_SECRET_KEY`: For Cloudflare Turnstile captcha verification.
+  *(Note: The contact form works directly via `mailto:` even if no API keys are provided, ensuring zero dropped messages).*
