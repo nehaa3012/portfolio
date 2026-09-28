@@ -14,14 +14,18 @@ const nextConfig: NextConfig = {
     ],
   },
   async rewrites() {
+    const rybbitHost = process.env.NEXT_PUBLIC_RYBBIT_HOST;
+    if (!rybbitHost) {
+      return [];
+    }
     return [
       {
         source: "/api/script.js",
-        destination: `${process.env.NEXT_PUBLIC_RYBBIT_HOST}/api/script.js`,
+        destination: `${rybbitHost}/api/script.js`,
       },
       {
         source: "/api/track",
-        destination: `${process.env.NEXT_PUBLIC_RYBBIT_HOST}/api/track`,
+        destination: `${rybbitHost}/api/track`,
       },
     ];
   },
